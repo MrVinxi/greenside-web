@@ -35,7 +35,7 @@ export default function UcpPanel() {
       <div className="w-full max-w-md bg-[#0f172a]/90 backdrop-blur-2xl border border-blue-500/20 rounded-[2.5rem] p-8 shadow-2xl relative z-10 animate-fade-in-up">
         <div className="flex justify-center mb-4">
           <div className="w-16 h-16 animate-spin-slow">
-            <img src="https://cdn-icons-png.flaticon.com/512/11544/11544866.png" className="w-full h-full object-contain drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
+            <img src="https://cdn.discordapp.com/attachments/1422879439892779099/1454480153462964224/20251220_175306.png?ex=69513db3&is=694fec33&hm=2429b403618a21d4193e9a9731da3dafe22c6e054b0bdecfcde2c9526f201bb6" className="w-full h-full object-contain drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
           </div>
         </div>
 
@@ -74,4 +74,5 @@ export default function UcpPanel() {
       `}</style>
     </div>
   );
+
 }
