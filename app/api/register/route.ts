@@ -12,7 +12,7 @@ export async function POST(req: Request) {
       database: process.env.DB_NAME,
     });
 
-    // 1. Cek apakah UCP atau DiscordID sudah ada di tabel ucp
+    // 1. Cek apakah username atau DiscordID sudah ada
     const [rows]: any = await db.execute(
       "SELECT username, DiscordID FROM ucp WHERE username = ? OR DiscordID = ?",
       [username, discordId]
@@ -26,18 +26,18 @@ export async function POST(req: Request) {
       );
     }
 
-    // 2. Generate PIN Random 6 Digit (untuk verifycode)
+    // 2. Generate PIN Random 6 Digit
     const randomPin = Math.floor(100000 + Math.random() * 900000);
 
-    // 3. Simpan ke Database
-    // Kita set password default (misal: 'Greenside123') karena kolom password tidak boleh kosong di DB
+    // 3. Simpan ke Database dengan menyertakan kolom salt dan password
+    // Kita isi salt dan password dengan string kosong "" untuk menghindari error "no default value"
     await db.execute(
-      "INSERT INTO ucp (username, pin, DiscordID) VALUES (?, ?, ?)",
-      [username, randomPin, discordId]
+      "INSERT INTO ucp (username, pin, DiscordID, salt, password) VALUES (?, ?, ?, ?, ?)",
+      [username, randomPin, discordId, "", ""]
     );
     await db.end();
 
-    // 4. Kirim DM Discord berisi Nama UCP dan PIN
+    // 4. Kirim DM Discord
     const botToken = process.env.DISCORD_TOKEN;
     const channelRes = await fetch("https://discord.com/api/v10/users/@me/channels", {
       method: "POST",
