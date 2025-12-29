@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     // 3. Cari data berdasarkan DiscordID
     // Pastikan nama kolom sesuai: 'ucp' dan 'verifycode' (dan 'DiscordID' dengan D besar)
     const [rows]: any = await db.execute(
-      "SELECT ucp, verifycode FROM playerucp WHERE DiscordID = ?",
+      "SELECT username, pin FROM ucp WHERE DiscordID = ?",
       [discordId]
     );
     await db.end();

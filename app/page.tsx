@@ -16,7 +16,7 @@ export default function LandingPage() {
           <div className="relative w-32 h-32 animate-spin-slow">
             <div className="absolute inset-0 bg-blue-500 rounded-full opacity-20 blur-2xl"></div>
             <img 
-              src="https://cdn.discordapp.com/attachments/1422879439892779099/1454480153462964224/20251220_175306.png?ex=69513db3&is=694fec33&hm=2429b403618a21d4193e9a9731da3dafe22c6e054b0bdecfcde2c9526f201bb6" 
+              src="https://cdn-icons-png.flaticon.com/512/11544/11544866.png" 
               alt="Logo" 
               className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(59,130,246,0.8)]"
             />

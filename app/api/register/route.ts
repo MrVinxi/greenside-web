@@ -12,9 +12,9 @@ export async function POST(req: Request) {
       database: process.env.DB_NAME,
     });
 
-    // 1. Cek apakah UCP atau DiscordID sudah ada di tabel playerucp
+    // 1. Cek apakah UCP atau DiscordID sudah ada di tabel ucp
     const [rows]: any = await db.execute(
-      "SELECT ucp, DiscordID FROM playerucp WHERE ucp = ? OR DiscordID = ?",
+      "SELECT username, DiscordID FROM ucp WHERE username = ? OR DiscordID = ?",
       [ucp, discordId]
     );
 
@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     // 3. Simpan ke Database
     // Kita set password default (misal: 'Greenside123') karena kolom password tidak boleh kosong di DB
     await db.execute(
-      "INSERT INTO playerucp (ucp, verifycode, DiscordID, registered, extrac) VALUES (?, ?, ?, 1, 1)",
+      "INSERT INTO ucp (username, pin, DiscordID) VALUES (?, ?, ?)",
       [ucp, randomPin, discordId]
     );
     await db.end();
