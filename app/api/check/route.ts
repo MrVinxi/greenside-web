@@ -34,7 +34,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const { ucp, verifycode } = rows[0];
+    const { username, pin } = rows[0];
 
     // 5. Kirim DM Discord melalui API Discord
     const botToken = process.env.DISCORD_TOKEN;
@@ -72,8 +72,8 @@ export async function POST(req: Request) {
           description: "Seseorang (mungkin Anda) baru saja meminta informasi akun melalui website.",
           color: 3447003, // Warna Biru (Hex: #3498db)
           fields: [
-            { name: "👤 Nama UCP", value: `\`${ucp}\``, inline: true },
-            { name: "🔢 PIN LOGIN", value: `**${verifycode}**`, inline: true },
+            { name: "👤 Nama UCP", value: `\`${username}\``, inline: true },
+            { name: "🔢 PIN LOGIN", value: `**${pin}**`, inline: true },
             { name: "⚠️ PENTING", value: "Jangan bagikan PIN ini kepada siapapun, termasuk staf.", inline: false }
           ],
           footer: { text: "Greenside Roleplay - Recovery System" },
