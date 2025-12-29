@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 
 export default function UcpPanel() {
-  const [form, setForm] = useState({ ucp: "", discordId: "" });
+  const [form, setForm] = useState({ username: "", discordId: "" });
   const [res, setRes] = useState({ type: "", msg: "" });
   const [loading, setLoading] = useState(false);
 
@@ -20,7 +20,7 @@ export default function UcpPanel() {
       const data = await response.json();
       if (!response.ok) throw new Error(data.error);
       setRes({ type: "success", msg: data.message });
-      setForm({ ucp: "", discordId: "" });
+      setForm({ username: "", discordId: "" });
     } catch (err: any) {
       setRes({ type: "error", msg: err.message });
     } finally {
@@ -35,7 +35,7 @@ export default function UcpPanel() {
       <div className="w-full max-w-md bg-[#0f172a]/90 backdrop-blur-2xl border border-blue-500/20 rounded-[2.5rem] p-8 shadow-2xl relative z-10 animate-fade-in-up">
         <div className="flex justify-center mb-4">
           <div className="w-16 h-16 animate-spin-slow">
-            <img src="https://cdn-icons-png.flaticon.com/512/11544/11544866.png" className="w-full h-full object-contain drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
+            <img src="https://cdn.discordapp.com/attachments/1422879439892779099/1454480153462964224/20251220_175306.png?ex=695337f3&is=6951e673&hm=d3d7081f4268cf1272b50aaf7f3bfc48faabce7579d5d2ce4dba7eb8e6948cf3" className="w-full h-full object-contain drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
           </div>
         </div>
 
@@ -50,7 +50,7 @@ export default function UcpPanel() {
           <input 
             type="text" placeholder="Nama UCP..." required
             className="w-full bg-[#020617] border border-blue-900/30 p-4 rounded-2xl outline-none focus:border-blue-500 transition-all shadow-inner"
-            value={form.ucp} onChange={e => setForm({...form, ucp: e.target.value})}
+            value={form.username} onChange={e => setForm({...form, username: e.target.value})}
           />
           <input 
             type="text" placeholder="ID Discord (18 Digit)..." required
