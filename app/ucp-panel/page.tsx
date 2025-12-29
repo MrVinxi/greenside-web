@@ -54,7 +54,7 @@ export default function UcpPanel() {
           <div className="space-y-2">
             <p className="text-[10px] text-blue-400 font-black uppercase tracking-[0.3em] ml-2">UCP Username</p>
             <input 
-              type="text" placeholder="Gunakan_Nama_SAMP..." required
+              type="text" placeholder="Isi username ucp..." required
               className="w-full bg-black/40 border border-white/10 p-4 rounded-2xl outline-none focus:border-blue-500/50 transition-all text-sm font-medium tracking-wide placeholder:text-gray-700 hover:bg-black/60"
               value={form.username} onChange={e => setForm({...form, username: e.target.value})}
             />
@@ -62,7 +62,7 @@ export default function UcpPanel() {
           <div className="space-y-2">
             <p className="text-[10px] text-blue-400 font-black uppercase tracking-[0.3em] ml-2">Discord Snowflake ID</p>
             <input 
-              type="text" placeholder="Contoh: 123456789012345678" required
+              type="text" placeholder="Isi dengan id discord anda" required
               className="w-full bg-black/40 border border-white/10 p-4 rounded-2xl outline-none focus:border-blue-500/50 transition-all text-sm font-medium tracking-wide placeholder:text-gray-700 hover:bg-black/60"
               value={form.discordId} onChange={e => setForm({...form, discordId: e.target.value})}
             />
@@ -89,4 +89,5 @@ export default function UcpPanel() {
       `}</style>
     </div>
   );
+
 }
