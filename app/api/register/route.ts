@@ -3,7 +3,7 @@ import mysql from "mysql2/promise";
 
 export async function POST(req: Request) {
   try {
-    const { ucp, discordId } = await req.json();
+    const { username, discordId } = await req.json();
 
     const db = await mysql.createConnection({
       host: process.env.DB_HOST,
@@ -15,13 +15,13 @@ export async function POST(req: Request) {
     // 1. Cek apakah UCP atau DiscordID sudah ada di tabel ucp
     const [rows]: any = await db.execute(
       "SELECT username, DiscordID FROM ucp WHERE username = ? OR DiscordID = ?",
-      [ucp, discordId]
+      [username, discordId]
     );
 
     if (rows.length > 0) {
       await db.end();
       return NextResponse.json(
-        { error: rows[0].ucp === ucp ? "Nama UCP sudah terdaftar!" : "Discord ID sudah digunakan!" },
+        { error: rows[0].username === username ? "Nama UCP sudah terdaftar!" : "Discord ID sudah digunakan!" },
         { status: 400 }
       );
     }
@@ -33,7 +33,7 @@ export async function POST(req: Request) {
     // Kita set password default (misal: 'Greenside123') karena kolom password tidak boleh kosong di DB
     await db.execute(
       "INSERT INTO ucp (username, pin, DiscordID) VALUES (?, ?, ?)",
-      [ucp, randomPin, discordId]
+      [username, randomPin, discordId]
     );
     await db.end();
 
@@ -56,7 +56,7 @@ export async function POST(req: Request) {
             description: "Gunakan informasi di bawah ini untuk login ke dalam server.",
             color: 3066993,
             fields: [
-              { name: "👤 Nama UCP", value: `\`${ucp}\``, inline: true },
+              { name: "👤 Nama UCP", value: `\`${username}\``, inline: true },
               { name: "🔢 PIN LOGIN", value: `**${randomPin}**`, inline: true },
               { name: "⚠️ PENTING", value: "PIN ini digunakan sebagai 'verifycode' saat Anda pertama kali masuk ke server.", inline: false }
             ],
